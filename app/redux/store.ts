@@ -4,11 +4,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import charactersReducer from "./reducers/charactersReducer";
 import episodesReducer from "./reducers/episodesReducer";
 
+export const reducers = {
+  charactersReducer,
+  episodesReducer,
+};
+
 export const store = configureStore({
-  reducer: {
-    charactersReducer,
-    episodesReducer,
-  },
+  reducer: reducers,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

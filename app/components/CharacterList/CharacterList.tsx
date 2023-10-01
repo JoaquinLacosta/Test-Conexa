@@ -24,7 +24,7 @@ export default function CharacterList({
       <Spinner />
     </div>
   ) : (
-    <div className="grid w-full grid-cols-characters-list gap-x-3 gap-y-4 px-2 py-3">
+    <div data-testid="character-list" className="grid w-full grid-cols-characters-list gap-x-3 gap-y-4 px-2 py-3">
       {characters.map((character) => (
         <CharacterCard
           key={`character-${listNumber}-${character.id}`}

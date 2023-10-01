@@ -55,7 +55,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="">
+    <main data-testid="home-page">
       <div className="flex flex-col lg:flex-row justify-between">
         <div className="w-full lg:w-1/2 relative px-3 self-start">
           <Accordion

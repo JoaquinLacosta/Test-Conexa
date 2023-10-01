@@ -17,6 +17,7 @@ export default function CombineButton() {
 
   return (
     <button
+      data-testid="combine-button"
       disabled={disableButton}
       onClick={fetchEpisodes}
       className={`text-black relative block font-bold mx-auto mt-4 rounded-full lg:absolute lg:text-center lg:-translate-x-1/2 lg:left-1/2 lg:mx-auto lg:-top-1 ${
