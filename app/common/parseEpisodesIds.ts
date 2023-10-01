@@ -2,7 +2,6 @@ import { store } from "../redux/store";
 import { Character, Episode } from "./types";
 
 export const getEpisodesIds = (character: Character): number[] => {
-  if (!character) return [];
   const episodes = character.episode;
   return episodes.map((episode) => {
     const splittedUrl = episode.split("/");

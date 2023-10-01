@@ -10,7 +10,7 @@ describe("Character Card Unit Tests", () => {
     isSelected: false,
     handleSelectCharacter: jest.fn(),
   };
-  it("The character card should component should render", () => {
+  it("The character card component should render", () => {
     renderWithStore(<CharacterCard {...defaultProps} />, {});
 
     const characterCardComponent = screen.getByTestId("character-card");
@@ -19,7 +19,7 @@ describe("Character Card Unit Tests", () => {
     expect(characterCardComponent).toBeInTheDocument();
   });
 
-  it("The character card should component should render the correct data", () => {
+  it("The character card component should render the correct data", () => {
     renderWithStore(<CharacterCard {...defaultProps} />, {});
 
     const characterCardImage = screen.getByTestId("character-card-image");

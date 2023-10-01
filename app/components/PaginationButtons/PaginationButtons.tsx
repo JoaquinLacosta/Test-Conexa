@@ -14,8 +14,12 @@ export default function PaginationButtons({
   paginationNumber,
 }: PaginationButtonsProps) {
   return (
-    <div className="flex w-full justify-between mb-2 px-2">
+    <div
+      data-testid="pagination-buttons-component"
+      className="flex w-full justify-between mb-2 px-2"
+    >
       <button
+        data-testid="pagination-buttons-previous-button"
         disabled={currentPage === 1}
         onClick={() => {
           fetchData(paginationNumber, currentPage - 1);
@@ -25,6 +29,7 @@ export default function PaginationButtons({
         Previous
       </button>
       <button
+        data-testid="pagination-buttons-next-button"
         disabled={paginationInfo && currentPage === paginationInfo.pages}
         onClick={() => {
           fetchData(paginationNumber, currentPage + 1);

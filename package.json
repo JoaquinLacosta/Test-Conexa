@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "test:coverage": "jest --watch --coverage",
-    "test:totalcoverage": "jest --coverage --collectCoverageFrom='app/**/*.{ts,jxs}'"
+    "test:totalcoverage": "jest --coverage"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
