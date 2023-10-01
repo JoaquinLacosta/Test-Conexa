@@ -20,7 +20,7 @@ export const getPopulatedCharacterEpisodes = (
 export const getCommonCharactersEpisodes = (
   firstCharacter: Character,
   secondCharacter: Character
-) => {
+): Episode[] => {
   const allEpisodes = store.getState().episodesReducer.episodes;
 
   const firstCharacterEpisodes = getEpisodesIds(firstCharacter);
