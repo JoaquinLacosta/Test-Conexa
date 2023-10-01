@@ -8,5 +8,5 @@ export const getEpisodes = async (episodeIds: number[]): Promise<Episode[]> => {
     }
   )
     .then((response) => response.json())
-    .then((data) => data);
+    .then((data) => (episodeIds.length === 1 ? [data] : data));
 };

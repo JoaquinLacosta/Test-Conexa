@@ -31,3 +31,25 @@ export const getCommonCharactersEpisodes = (
       secondCharacterEpisodes.includes(episode.id)
   );
 };
+
+export const getEpisodesIdsToFetch = (): number[] => {
+  const { firstCharacter, secondCharacter } =
+    store.getState().charactersReducer;
+  const { episodes } = store.getState().episodesReducer;
+  const firstCharacterEpisodes = firstCharacter
+    ? getEpisodesIds(firstCharacter)
+    : [];
+  const secondCharacterEpisodes = secondCharacter
+    ? getEpisodesIds(secondCharacter)
+    : [];
+  const bothCharactersEpisodes = [
+    ...firstCharacterEpisodes,
+    ...secondCharacterEpisodes,
+  ];
+  const existingEpisodes: number[] = episodes.map((episode) => episode.id);
+  const episodesToFetch: number[] = bothCharactersEpisodes.filter(
+    (episodeId) => !existingEpisodes.includes(episodeId)
+  );
+
+  return episodesToFetch;
+};

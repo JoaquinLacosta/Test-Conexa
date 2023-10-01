@@ -1,18 +1,11 @@
 "use client";
 
 import PlusIcon from "@/app/assets/PlusIcon";
-import { getEpisodesIds } from "@/app/common/parseEpisodesIds";
-import {
-  setEpisodes,
-  setLoadingEpisodes,
-  setShowEpisodesSection,
-} from "@/app/redux/reducers/episodesReducer";
+import useFetch from "@/app/hooks/useFetch";
 import { RootState } from "@/app/redux/store";
-import { getEpisodes } from "@/app/services/episodeService";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function CombineButton() {
-  const dispatch = useDispatch();
   const { firstCharacter, secondCharacter } = useSelector(
     (state: RootState) => state.charactersReducer
   );
@@ -20,26 +13,7 @@ export default function CombineButton() {
     (state: RootState) => state.episodesReducer
   );
   const disableButton = !firstCharacter || !secondCharacter || loadingEpisodes;
-
-  const fetchEpisodes = async () => {
-    const firstCharacterEpisodes = firstCharacter
-      ? getEpisodesIds(firstCharacter)
-      : [];
-    const secondCharacterEpisodes = secondCharacter
-      ? getEpisodesIds(secondCharacter)
-      : [];
-    dispatch(setLoadingEpisodes(true));
-    dispatch(setShowEpisodesSection(true));
-    await getEpisodes([...firstCharacterEpisodes, ...secondCharacterEpisodes])
-      .then((response) => {
-        dispatch(setEpisodes(response));
-      })
-      .finally(() => {
-        const episodesElement = document.getElementById("episodes-section");
-        dispatch(setLoadingEpisodes(false));
-        episodesElement?.scrollIntoView({ behavior: "smooth" });
-      });
-  };
+  const { fetchEpisodes } = useFetch();
 
   return (
     <button

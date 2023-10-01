@@ -19,8 +19,8 @@ export const episodesSlice = createSlice({
   name: "episodes",
   initialState,
   reducers: {
-    setEpisodes: (state, action: PayloadAction<Episode[]>) => {
-      state.episodes = action.payload;
+    addEpisodes: (state, action: PayloadAction<Episode[]>) => {
+      state.episodes = [...state.episodes, ...action.payload];
     },
     setLoadingEpisodes: (state, action: PayloadAction<boolean>) => {
       state.loadingEpisodes = action.payload;
@@ -31,7 +31,7 @@ export const episodesSlice = createSlice({
   },
 });
 
-export const { setEpisodes, setLoadingEpisodes, setShowEpisodesSection } =
+export const { addEpisodes, setLoadingEpisodes, setShowEpisodesSection } =
   episodesSlice.actions;
 
 export default episodesSlice.reducer;

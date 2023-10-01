@@ -1,19 +1,9 @@
 "use client";
 import { useEffect, useRef } from "react";
 import CharacterList from "./components/CharacterList/CharacterList";
-import {
-  addCharacters,
-  setCurrentPage,
-  setFirstCharacterPage,
-  setLoadingCharacters,
-  setLoadingFirstCharacterList,
-  setLoadingSecondCharacterList,
-  setPaginationInfo,
-  setSecondCharacterPage,
-} from "./redux/reducers/charactersReducer";
+import { setLoadingCharacters } from "./redux/reducers/charactersReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./redux/store";
-import { getCharacters } from "./services/characterService";
 import {
   getCommonCharactersEpisodes,
   getEpisodesIds,
@@ -25,6 +15,7 @@ import useSelectCharacters from "./hooks/useSelectCharacters";
 import PaginationButtons from "./components/PaginationButtons/PaginationButtons";
 import Accordion from "./components/Accordion/Accordion";
 import Spinner from "./components/Spinner/Spinner";
+import useFetch from "./hooks/useFetch";
 
 export default function Home() {
   const {
@@ -48,33 +39,11 @@ export default function Home() {
     disableCharacterCard,
     isCharacterCardSelected,
   } = useSelectCharacters();
+  const { fetchCharacters } = useFetch();
 
   const fetchData = (paginationNumber: number, page: number): void => {
     dataFetchRef.current = true;
-    dispatch(setCurrentPage(page));
-    if (paginationNumber === 1) {
-      dispatch(setFirstCharacterPage(page));
-    } else {
-      dispatch(setSecondCharacterPage(page));
-    }
-
-    if (!characters[page]) {
-      if (paginationNumber === 1) {
-        dispatch(setLoadingFirstCharacterList(true));
-      } else {
-        dispatch(setLoadingSecondCharacterList(true));
-      }
-      getCharacters()
-        .then((data) => {
-          dispatch(addCharacters(data.results));
-          dispatch(setPaginationInfo(data.info));
-        })
-        .finally(() => {
-          dispatch(setLoadingCharacters(false));
-          dispatch(setLoadingFirstCharacterList(false));
-          dispatch(setLoadingSecondCharacterList(false));
-        });
-    }
+    fetchCharacters(paginationNumber, page);
   };
 
   useEffect(() => {
