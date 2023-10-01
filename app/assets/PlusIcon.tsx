@@ -8,11 +8,11 @@ export default function PlusIcon({ disabled }: PlusIconProps) {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0,0,256,256"
-      width="50px"
-      height="50px"
+      width="3.125rem"
+      height="3.125rem"
     >
       <g
-        fill-opacity="1"
+        fillOpacity="1"
         fill={`${disabled ? "#686e69" : "#FFFFFF"}`}
         fillRule="nonzero"
         stroke="none"

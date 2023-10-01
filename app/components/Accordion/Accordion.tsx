@@ -3,6 +3,7 @@ import { useState } from "react";
 interface AccordionProps {
   children: React.ReactNode;
   title: string;
+  childrenContainerClassName?: string;
   titleClassName?: string;
 }
 
@@ -10,6 +11,7 @@ export default function Accordion({
   children,
   title,
   titleClassName,
+  childrenContainerClassName,
 }: AccordionProps) {
   const [isShowing, setIsShowing] = useState(false);
 
@@ -27,9 +29,9 @@ export default function Accordion({
         <h2 className={`text-2xl font-bold ${titleClassName}`}>{title}</h2>
       </button>
       <div
-        className="overflow-hidden transition-all ease duration-500"
+        className={`overflow-hidden transition-all ease duration-500 overflow-y-scroll ${childrenContainerClassName}`}
         style={{
-          maxHeight: isShowing ? "0px" : "3500px",
+          maxHeight: isShowing ? "0rem" : "50rem",
         }}
       >
         {children}

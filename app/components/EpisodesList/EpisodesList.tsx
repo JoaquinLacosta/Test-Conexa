@@ -14,7 +14,7 @@ export default function EpisodesList({ episodes, name }: EpisodesListProps) {
   );
   return (
     <div className="p-3 lg:w-1/3">
-      <Accordion title={`Episodes of ${name}`} titleClassName="px-2">
+      <Accordion childrenContainerClassName="overflow-y-scroll max-h-[2rem] lg:max-h-none" title={`Episodes of ${name}`} titleClassName="px-2">
         {episodes.length ? (
           <ul className="px-2">
             {episodes.map((episode) => (

@@ -1,6 +1,5 @@
 import { Character } from "@/app/common/types";
 import CharacterCard from "../CharacterCard/CharacterCard";
-import "./CharacterList.css";
 import Spinner from "../Spinner/Spinner";
 
 interface CharacterListProps {
@@ -25,7 +24,7 @@ export default function CharacterList({
       <Spinner />
     </div>
   ) : (
-    <div className="character-list-container px-2 py-3">
+    <div className="grid w-full grid-cols-characters-list gap-x-3 gap-y-4 px-2 py-3">
       {characters.map((character) => (
         <CharacterCard
           key={`character-${listNumber}-${character.id}`}
